@@ -5,6 +5,9 @@
 4. Deposit
 5. Exit
 '''
+
+# NB: zero defensive coding, just wanted things to work systematically
+
 accts = []
 def menu():
 	print('1. Create account')
@@ -23,7 +26,6 @@ def create_account():
 
 
 def save_account():
-		
 		accts.append(create_account())
 		print(accts)
 		return accts
@@ -47,6 +49,18 @@ while True:
 			for acct in accts:
 				if acct[0] == username:
 					print(f'{acct[0]} Balance: {acct[1]}')
+		case 3:
+			username = input('Please enter your username to send money: ')
+			for acct in accts:
+				if acct[0] == username:
+					receiver = input("Please enter receiver's username: ")
+					for acct in accts:
+						if acct[0] == receiver:	
+							send_amt = float(input('Please enter amount to be sent: '))
+							acct[1] += send_amt
+							print(f'{send_amt} cedis sent successfully to {acct[0]}')
+							
+
 		case 4:
 			username = input('Please enter your username to make deposit: ')
 			for acct in accts:
@@ -60,4 +74,4 @@ while True:
 			print('y means yes and n means no')
 			exit_msg = input('Are you sure you want to exit. enter y/n: ')
 			if exit_msg == 'y':
-				exit()				
+				exit()

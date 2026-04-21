@@ -5,7 +5,7 @@
 4. Deposit
 5. Exit
 '''
-
+accts = []
 def menu():
 	print('1. Create account')
 	print('2. Check balance')
@@ -17,12 +17,13 @@ def menu():
 def create_account():
 	name = input('Enter your name: ')
 	first_deposit_amount = float(input("Enter first deposit amount: "))
-	# print(f'{name} your account is created successfully with an initial deposit of {first_deposit_amount} cedis')
-	return name,first_deposit_amount
+	print(f'{name} your account has been created successfully with an initial deposit of {first_deposit_amount} cedis')
+	created_account = (name,first_deposit_amount)
+	return created_account
 
 
-def accounts():
-		accts = []
+def save_account():
+		
 		accts.append(create_account())
 		print(accts)
 
@@ -30,7 +31,11 @@ def select_option():
 	opt = int(input('Select an option: '))
 	return opt
 
-
+while True:
+	menu()
+	match select_option():
+		case 1:
+			save_account()
 
 '''
 Program runs below
@@ -38,7 +43,5 @@ Program runs below
 
 # menu()
 
-match select_option():
-	case 1:
-		create_account()
-		accounts()
+
+		

@@ -41,6 +41,15 @@ while True:
 	
 	match select_option():
 		case 1:
-			a = save_account()
+			accts = save_account()
 		case 2:
-			print(a)
+			username = input('Please enter your username to view balance: ')
+			for acct in accts:
+				if acct[0] == username:
+					print(f'{acct[0]} Balance: {acct[1]}')
+		case 5:
+			print('y means yes and n means no')
+			m = input('Are you sure you want to exit. enter y/n: ')
+			if m == 'y':
+				exit()
+				

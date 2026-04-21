@@ -18,7 +18,7 @@ def create_account():
 	name = input('Enter your name: ')
 	first_deposit_amount = float(input("Enter first deposit amount: "))
 	print(f'{name} your account has been created successfully with an initial deposit of {first_deposit_amount} cedis')
-	created_account = (name,first_deposit_amount)
+	created_account = list((name,first_deposit_amount))
 	return created_account
 
 
@@ -47,9 +47,17 @@ while True:
 			for acct in accts:
 				if acct[0] == username:
 					print(f'{acct[0]} Balance: {acct[1]}')
+		case 4:
+			username = input('Please enter your username to make deposit: ')
+			for acct in accts:
+				if acct[0] == username:
+					deposit_amt = float(input('Please enter amount to be *deposited: '))
+					print(f'{deposit_amt} cedis deposited successfully')
+					print(f'Previous Balance: {acct[1]}')
+					acct[1] += deposit_amt
+					print(f'Current Balance: {acct[1]}')
 		case 5:
 			print('y means yes and n means no')
-			m = input('Are you sure you want to exit. enter y/n: ')
-			if m == 'y':
-				exit()
-				
+			exit_msg = input('Are you sure you want to exit. enter y/n: ')
+			if exit_msg == 'y':
+				exit()				

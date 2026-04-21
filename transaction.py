@@ -26,22 +26,21 @@ def save_account():
 		
 		accts.append(create_account())
 		print(accts)
-
+		return accts
+		
 def select_option():
 	opt = int(input('Select an option: '))
 	return opt
 
-while True:
-	menu()
-	match select_option():
-		case 1:
-			save_account()
 
 '''
 Program runs below
 '''
-
-# menu()
-
-
-		
+menu()
+while True:
+	
+	match select_option():
+		case 1:
+			a = save_account()
+		case 2:
+			print(a)

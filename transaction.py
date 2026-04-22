@@ -59,6 +59,10 @@ while True:
 							send_amt = float(input('Please enter amount to be sent: '))
 							acct[1] += send_amt
 							print(f'{send_amt} cedis sent successfully to {acct[0]}')
+							for acct in accts:
+								if acct[0] == username:
+									acct[1] -= send_amt
+							
 							
 
 		case 4:

@@ -1,3 +1,5 @@
+# NB: zero defensive coding, just wanted things to work systematically
+
 '''
 1. Create account
 2. Check balance
@@ -6,9 +8,8 @@
 5. Exit
 '''
 
-# NB: zero defensive coding, just wanted things to work systematically
-
 accts = []
+
 def menu():
 	print('1. Create account')
 	print('2. Check balance')
@@ -16,14 +17,12 @@ def menu():
 	print('4. Deposit')
 	print('5. Exit')
 
-
 def create_account():
 	name = input('Enter your name: ')
 	first_deposit_amount = float(input("Enter first deposit amount: "))
 	print(f'{name} your account has been created successfully with an initial deposit of {first_deposit_amount} cedis')
 	created_account = list((name,first_deposit_amount))
 	return created_account
-
 
 def save_account():
 		accts.append(create_account())
@@ -33,7 +32,6 @@ def save_account():
 def select_option():
 	opt = int(input('Select an option: '))
 	return opt
-
 
 '''
 Program runs below
@@ -54,17 +52,17 @@ while True:
 			for acct in accts:
 				if acct[0] == username:
 					receiver = input("Please enter receiver's username: ")
+					sender_amt = acct[1]
 					for acct in accts:
 						if acct[0] == receiver:	
 							send_amt = float(input('Please enter amount to be sent: '))
-							acct[1] += send_amt
-							print(f'{send_amt} cedis sent successfully to {acct[0]}')
+							if sender_amt >= send_amt:
+								print(f'{send_amt} cedis sent successfully to {acct[0]}')
+								acct[1] += send_amt					
 							for acct in accts:
 								if acct[0] == username:
-									acct[1] -= send_amt
-							
-							
-
+									if sender_amt >= send_amt:
+										acct[1] -= send_amt
 		case 4:
 			username = input('Please enter your username to make deposit: ')
 			for acct in accts:

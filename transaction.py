@@ -38,7 +38,6 @@ Program runs below
 '''
 menu()
 while True:
-	
 	match select_option():
 		case 1:
 			accts = save_account()
